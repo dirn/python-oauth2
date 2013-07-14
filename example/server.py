@@ -22,6 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 """
 
+from __future__ import print_function
 from BaseHTTPServer import BaseHTTPRequestHandler, HTTPServer
 import urllib
 
@@ -102,13 +103,13 @@ class RequestHandler(BaseHTTPRequestHandler):
         # return the authenticate header
         header = oauth.build_authenticate_header(realm=REALM)
         for k, v in header.iteritems():
-            self.send_header(k, v) 
+            self.send_header(k, v)
 
     def do_GET(self):
 
         # debug info
-        #print self.command, self.path, self.headers
-        
+        #print(self.command, self.path, self.headers)
+
         # get the post data (if any)
         postdata = None
         if self.command == 'POST':
@@ -186,7 +187,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 def main():
     try:
         server = HTTPServer(('', 8080), RequestHandler)
-        print 'Test server running...'
+        print('Test server running...')
         server.serve_forever()
     except KeyboardInterrupt:
         server.socket.close()
