@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-from __future__ import print_function
 from setuptools import setup, find_packages
 import os, re
 
@@ -16,7 +15,6 @@ else:
     if mo:
         mverstr = mo.group(1)
     else:
-        print("unable to find version in %s" % (VERSIONFILE,))
         raise RuntimeError("if %s.py exists, it must be well-formed" % (VERSIONFILE,))
     AVSRE = r"^auto_build_num *= *['\"]([^'\"]*)['\"]"
     mo = re.search(AVSRE, verstrline, re.M)
