@@ -26,26 +26,19 @@ import base64
 import urllib
 import time
 import random
-import urlparse
+try:
+    import urllib.parse as urlparse
+except ImportError:
+    import urlparse
 import hmac
 import binascii
 import httplib2
 
-try:
-    from urlparse import parse_qs
-    parse_qs # placate pyflakes
-except ImportError:
-    # fall back for Python 2.5
-    from cgi import parse_qs
+parse_qs = urlparse.parse_qs
 
-try:
-    from hashlib import sha1
-    sha = sha1
-except ImportError:
-    # hashlib was added in Python 2.5
-    import sha
+from hashlib import sha1 as sha
 
-import _version
+from . import _version
 
 __version__ = _version.__version__
 
